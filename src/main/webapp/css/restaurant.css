@@ -1,0 +1,215 @@
+:root {
+    --header-color: rgba(165, 42, 42, 1);
+    --body-color: rgba(245, 245, 220, 1);
+    --footer-color: rgba(201, 51, 51, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    /* background-color: #f0f2f5; */
+    background-color: var(--body-color);
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--header-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    padding-top: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+.restaurants-container {
+    display: grid;
+    /* background-color: var(--body-color); */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.restaurant-card {
+    background-color: #fffafa;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem;
+}
+
+.cuisine {
+    color: #ecf0f1;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-tag.active {
+    background-color: #27ae60;
+    color: white;
+}
+
+.status-tag.inactive {
+    background-color: #c0392b;
+    color: white;
+}
+
+.status-tag ion-icon {
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.card-content h2 {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-content h2 ion-icon {
+    font-size: 2.5rem;
+    color: orange;
+}
+
+.restaurant-card .rating {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    justify-content: center;
+    /* margin-bottom: 0.5rem; */
+}
+
+.restaurant-card .rating-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #e67e22;
+    /* margin-right: 0.3rem; */
+}
+
+.restaurant-card .rating ion-icon {
+    font-size: 1rem;
+    color: #e67e22;
+}
+
+.restaurant-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #34495e;
+}
+
+.restaurant-card .address,
+.restaurant-card .delivery-time {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.restaurant-card .address ion-icon,
+.restaurant-card .delivery-time ion-icon {
+    margin-right: 0.5rem;
+    color: #27ae60;
+}
+
+.restaurant-card .address ion-icon {
+    font-size: 2rem;
+}
+
+.restaurant-card .delivery-time ion-icon {
+    font-size: 1.7rem;
+}
+
+.time-rating-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 1rem; */
+    padding-left: .2rem;
+}
+
+/* .footer {
+    background-color: var(--footer-color);
+} */
+
+@media (max-width: 768px) {
+    .restaurants-container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Glassmorphic Register</title>
+		<link rel="stylesheet" href="./css/register.css" />
+	</head>
+	<body>
+		<div class="background">
+			<div class="shape"></div>
+			<div class="shape"></div>
+		</div>
+		<form id="registerForm" action="./pages/restaurant.html">
+			<h3>Register Here</h3>
+			<div class="form-grid">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input
+						type="text"
+						placeholder="Full Name"
+						id="name"
+						required
+						value="Vicky"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input
+						type="text"
+						placeholder="Username"
+						id="username"
+						required
+						value="Vicky"
+					/>
+				</div>
+				<div class="form-group full-width">
+					<label for="email">Email</label>
+					<input
+						type="email"
+						placeholder="Email"
+						id="email"
+						required
+						value="Vicky@gmail.com"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input
+						type="password"
+						placeholder="Password"
+						id="password"
+						required
+						value="Vicky@2003"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword">Confirm Password</label>
+					<input
+						type="password"
+						placeholder="Confirm Password"
+						id="confirmPassword"
+						required
+						value="Vicky@2003"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input
+						type="tel"
+						placeholder="Phone Number"
+						id="phone"
+						required
+						value="1234567890"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="role">Role</label>
+					<select id="role" required>
+						<option value="user" selected>User</option>
+						<option value="admin">Admin</option>
+						<option value="agent">Agent</option>
+					</select>
+				</div>
+				<div class="form-group full-width">
+					<label for="address">Address</label>
+					<textarea id="address" placeholder="Your Address" required></textarea>
+				</div>
+			</div>
+			<button type="submit">Register</button>
+			<div class="links">
+				<a href="./login.html" class="login">Already have an account? Log In</a>
+			</div>
+		</form>
+		<script src="./js/register.js"></script>
+	</body>
+</html>
