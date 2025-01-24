@@ -1,15 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
-<%@ page import="com.app.entity.Restaurant" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Restaurants Near You</title>
-		<link rel="stylesheet" href="css/restaurant.css" />
-		<link rel="stylesheet" href="css/navbar.css" />
-		<link rel="stylesheet" href="css/footer.css" />
+		<title>FoodieExpress - Your Cart</title>
+		<link rel="stylesheet" href="../css/cart.css" />
+		<link rel="stylesheet" href="../css/navbar.css" />
+		<link rel="stylesheet" href="../css/footer.css" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
@@ -24,9 +21,11 @@
 		></script>
 	</head>
 	<body>
-		<nav class="navbar">
+		<nav class="navbar" style="margin-top: 10px">
 			<div class="navbar-container">
-				<a href="#" class="logo"><img src="images/logo/logo.svg" alt="" /></a>
+				<a href="#" class="logo"
+					><img src="../images/logo/logo.svg" alt=""
+				/></a>
 				<ul class="nav-links">
 					<li>
 						<a href="#"
@@ -64,54 +63,91 @@
 				</button>
 			</div>
 		</nav>
-		<header>
-			<h1>Restaurants Near You</h1>
-		</header>
-		<main class="restaurants-container">
-
-		<% List<Restaurant> restaurants = (List<Restaurant>) request.getAttribute("restaurants"); %>
-		<% for (Restaurant restaurant : restaurants) { %>
-		<a href="menu?restaurantId=<%= restaurant.getRestaurantId()%>">
-			<div class="restaurant-card">
-				<div class="card-image">
-					<img src="<%= restaurant.getImagePath() %>" alt="Sample" />
-					<div class="overlay">
-						<span class="cuisine"><%= restaurant.getCuisineType() %></span>
-					</div>
-					<div class="status-tag <%= restaurant.isActive() ? "active" : "inactive" %> ">
-						<span><%= restaurant.isActive() ? "Open" : "Closed" %></span>
-						<ion-icon name="<%= restaurant.isActive() ? "restaurant" : "notifications-off-outline" %>"></ion-icon>
-					</div>
-				</div>
-				<div class="card-content">
-					<h2>
-						<ion-icon name="restaurant"></ion-icon>
-						<span><%= restaurant.getName() %></span>
-					</h2>
-					<p class="address">
-						<ion-icon name="location"></ion-icon>
-						<span><%= restaurant.getAddress() %></span>
-					</p>
-					<div class="time-rating-container">
-						<p class="delivery-time">
-							<ion-icon name="time"></ion-icon> <span><%= restaurant.getDeliveryTime() %> - <%= restaurant.getDeliveryTime() + 10 %> min</span>
-						</p>
-						<div class="rating">
-							<p class="rating-value">4.5</p>
-							<ion-icon name="star"></ion-icon>
+		<div class="cart-container">
+			<h1><span>Your Cart</span> <ion-icon name="cart"></ion-icon></h1>
+			<div id="cart-items">
+				<div class="cart-item" data-id="1">
+					<img
+						src="./../images/menu/chicken-briyani.png"
+						alt="Margherita Pizza"
+						class="item-image"
+					/>
+					<div class="item-details">
+						<div class="item-name">Margherita Pizza</div>
+						<div class="item-description">
+							Classic Italian pizza with tomato and mozzarella
 						</div>
 					</div>
+					<div class="item-quantity">
+						<button class="quantity-btn" onclick="updateQuantity(1, -1)">
+							-
+						</button>
+						<span class="quantity" id="quantity-1">1</span>
+						<button class="quantity-btn" onclick="updateQuantity(1, 1)">
+							+
+						</button>
+					</div>
+					<div class="item-price" id="price-1">$12.99</div>
 				</div>
+				<div class="cart-item" data-id="2">
+					<img
+						src="../images/menu/lemon-juice.png"
+						alt="Chicken Alfredo"
+						class="item-image"
+					/>
+					<div class="item-details">
+						<div class="item-name">Chicken Alfredo</div>
+						<div class="item-description">
+							Creamy pasta with grilled chicken
+						</div>
+					</div>
+					<div class="item-quantity">
+						<button class="quantity-btn" onclick="updateQuantity(2, -1)">
+							-
+						</button>
+						<span class="quantity" id="quantity-2">1</span>
+						<button class="quantity-btn" onclick="updateQuantity(2, 1)">
+							+
+						</button>
+					</div>
+					<div class="item-price" id="price-2">₹14.99</div>
 				</div>
-				</a>
-		<% } %>
-
-		</main>
+				<div class="cart-item" data-id="3">
+					<img
+						src="../images/menu/pizza.png"
+						alt="Caesar Salad"
+						class="item-image"
+					/>
+					<div class="item-details">
+						<div class="item-name">Caesar Salad</div>
+						<div class="item-description">
+							Fresh romaine lettuce with Caesar dressing
+						</div>
+					</div>
+					<div class="item-quantity">
+						<button class="quantity-btn" onclick="updateQuantity(3, -1)">
+							-
+						</button>
+						<span class="quantity" id="quantity-3">1</span>
+						<button class="quantity-btn" onclick="updateQuantity(3, 1)">
+							+
+						</button>
+					</div>
+					<div class="item-price" id="price-3">$8.99</div>
+				</div>
+			</div>
+			<div class="cart-summary">
+				<div class="cart-total">Total Price: ₹<span id="cart-total">36.97</span></div>
+				<button class="checkout-btn" onclick="proceedToCheckout()">
+					Proceed to Checkout
+				</button>
+			</div>
+		</div>
 		<footer class="footer">
 			<div class="footer-content">
 				<div class="footer-section">
 					<a href="#" class="logo"
-						><img src="images/logo/logo.svg" alt=""
+						><img src="../images/logo/logo.svg" alt=""
 					/></a>
 					<p style="margin-top: 25px">
 						Delivering your favorite meals right to your doorstep. Fast, fresh,
@@ -192,6 +228,7 @@
 				<p>&copy; 2025 TastyTrack. All rights reserved.</p>
 			</div>
 		</footer>
-		<script src="js/navbar.js"></script>
+		<!-- <script src="script.js"></script> -->
+		<script src="../js/navbar.js"></script>
 	</body>
 </html>

@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.app.entity.Restaurant" %>
+<%@ page import="com.app.entity.Menu" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Restaurants Near You</title>
-		<link rel="stylesheet" href="css/restaurant.css" />
-		<link rel="stylesheet" href="css/navbar.css" />
-		<link rel="stylesheet" href="css/footer.css" />
+		<title>Restaurant Menu</title>
+		<link rel="stylesheet" href="css/menu.css" />
+		<link rel="stylesheet" href="css/navbar.css">
+		<link rel="stylesheet" href="css/footer.css">
 		<link
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
@@ -26,7 +26,9 @@
 	<body>
 		<nav class="navbar">
 			<div class="navbar-container">
-				<a href="#" class="logo"><img src="images/logo/logo.svg" alt="" /></a>
+				<a href="#" class="logo"
+					><img src="images/logo/logo.svg" alt=""
+				/></a>
 				<ul class="nav-links">
 					<li>
 						<a href="#"
@@ -59,53 +61,39 @@
 						>
 					</li>
 				</ul>
-				<button class="mobile-menu-btn">
-					<ion-icon name="apps-outline"></ion-icon>
-				</button>
+				<button class="mobile-menu-btn"><ion-icon name="apps-outline"></ion-icon></button>
 			</div>
 		</nav>
 		<header>
-			<h1>Restaurants Near You</h1>
+			<h1>Our Delicious Menu</h1>
 		</header>
-		<main class="restaurants-container">
+		<main class="menu-container">
 
-		<% List<Restaurant> restaurants = (List<Restaurant>) request.getAttribute("restaurants"); %>
-		<% for (Restaurant restaurant : restaurants) { %>
-		<a href="menu?restaurantId=<%= restaurant.getRestaurantId()%>">
-			<div class="restaurant-card">
-				<div class="card-image">
-					<img src="<%= restaurant.getImagePath() %>" alt="Sample" />
-					<div class="overlay">
-						<span class="cuisine"><%= restaurant.getCuisineType() %></span>
-					</div>
-					<div class="status-tag <%= restaurant.isActive() ? "active" : "inactive" %> ">
-						<span><%= restaurant.isActive() ? "Open" : "Closed" %></span>
-						<ion-icon name="<%= restaurant.isActive() ? "restaurant" : "notifications-off-outline" %>"></ion-icon>
-					</div>
-				</div>
-				<div class="card-content">
-					<h2>
-						<ion-icon name="restaurant"></ion-icon>
-						<span><%= restaurant.getName() %></span>
-					</h2>
-					<p class="address">
-						<ion-icon name="location"></ion-icon>
-						<span><%= restaurant.getAddress() %></span>
-					</p>
-					<div class="time-rating-container">
-						<p class="delivery-time">
-							<ion-icon name="time"></ion-icon> <span><%= restaurant.getDeliveryTime() %> - <%= restaurant.getDeliveryTime() + 10 %> min</span>
-						</p>
-						<div class="rating">
-							<p class="rating-value">4.5</p>
-							<ion-icon name="star"></ion-icon>
-						</div>
-					</div>
-				</div>
-				</div>
-				</a>
-		<% } %>
 
+		<% List<Menu> menus = (List<Menu>) request.getAttribute("menus"); %>
+		<% for( Menu menu : menus ) {%>
+			<div class="menu-item <%=menu.isAvailable()?"":"unavailable"%> ">
+				<img
+					src="<%= menu.getImagePath() %>"
+					alt="<%= menu.getMenuName() %>"
+				/>
+				<h2><%= menu.getMenuName() %></h2>
+				<p class="description">
+					<%= menu.getDescription() %>
+				</p>
+				<div class="details">
+					<span class="rating">★ <%= menu.getRating() %></span>
+					<span class="price" data-base-price="<%= menu.getPrice() %>">₹<%= menu.getPrice() %></span>
+				</div>
+				<form class="cart-controls" action="/tastytrack/" >
+					<button type="submit" class="add-to-cart">Add to Cart</button>
+				</form>
+			
+			</div>
+
+		<%}%>
+
+			
 		</main>
 		<footer class="footer">
 			<div class="footer-content">
@@ -113,7 +101,7 @@
 					<a href="#" class="logo"
 						><img src="images/logo/logo.svg" alt=""
 					/></a>
-					<p style="margin-top: 25px">
+					<p style="margin-top: 25px;" >
 						Delivering your favorite meals right to your doorstep. Fast, fresh,
 						and delicious!
 					</p>
