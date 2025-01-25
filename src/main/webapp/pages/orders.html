@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Food Delivery</title>
+    <link rel="stylesheet" href="../css/orders.css">
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Header -->
+        <div class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-6">
+                <h1 class="text-2xl font-bold text-gray-900">Order History</h1>
+            </div>
+        </div>
+
+        <main class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Filters and Search -->
+            <div class="filters-bar">
+                <div class="search-box">
+                    <span class="icon">🔍</span>
+                    <input type="text" id="searchOrders" placeholder="Search orders...">
+                </div>
+                
+                <div class="filter-options">
+                    <select id="timeFilter" class="filter-select">
+                        <option value="all">All Time</option>
+                        <option value="week">Past Week</option>
+                        <option value="month">Past Month</option>
+                        <option value="year">Past Year</option>
+                    </select>
+                    
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="processing">Processing</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    
+                    <select id="sortOrder" class="filter-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="highest">Highest Amount</option>
+                        <option value="lowest">Lowest Amount</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Orders List -->
+            <div class="orders-container">
+                <!-- Orders will be populated here by JavaScript -->
+            </div>
+
+            <!-- No Orders Message (hidden by default) -->
+            <div id="noOrders" class="no-orders hidden">
+                <span class="icon">📦</span>
+                <h3>No Orders Found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+
+            <!-- Load More Button -->
+            <button id="loadMore" class="load-more-button">
+                Load More Orders
+            </button>
+        </main>
+    </div>
+    <script src="../js/orders.js"></script>
+</body>
+</html>

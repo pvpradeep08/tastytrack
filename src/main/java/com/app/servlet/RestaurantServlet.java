@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.app.controller.RestaurantController;
 import com.app.entity.Restaurant;
-import com.app.entity.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,8 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RestaurantServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
-        if (user != null) {
+        if ( req.getSession().getAttribute("username") != null) {
+
             List<Restaurant> restaurants = RestaurantController.getAllRestaurants();
             req.setAttribute("restaurants", restaurants);
             req.getRequestDispatcher("/pages/restaurant.jsp").forward(req, resp);

@@ -47,8 +47,7 @@
                     </li>
                     <li>
                         <a href="#"
-                            ><ion-icon name="grid"></ion-icon
-                            ><span class="nav-text">Menu</span></a
+                            ><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a
                         >
                     </li>
                     <li>

@@ -52,19 +52,19 @@
 					</li>
 					<li>
 						<a href="#"
-							><ion-icon name="grid"></ion-icon
-							><span class="nav-text">Menu</span></a
+							><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a
 						>
 					</li>
 					<li>
-						<a href="pages/cart.jsp"
+					<% String sampleAction = "nothing";  %>
+						<a href="../cart?restaurantId=<%= session.getAttribute("currentRestaurantId") != null ? session.getAttribute("currentRestaurantId") : 0 %>&action=<%= sampleAction %>"
 							><ion-icon name="cart"></ion-icon
 							><span class="nav-text">Cart</span></a
 						>
 					</li>
 					<li>
-						<a href="#"
-							><ion-icon name="person"></ion-icon
+						<a href="../dashboard"
+							><ion-icon name="person-circle"></ion-icon
 							><span class="nav-text"><%= (String) session.getAttribute("username") != null ? session.getAttribute("username").toString().split(" ")[0] : "Login" %></span></a
 						>
 					</li>
@@ -159,9 +159,9 @@
 					Total Price: ₹<span id="cart-total"><%= cart.getTotal() %></span>
 				</div>
 				<a href="../menu?restaurantId=<%= currentRestaurantId %>" class="add-more">Add More Items to Cart</a>
-				<button class="checkout-btn" >
+				<a class="checkout-btn" href="../pages/checkout.html" >
 					Proceed to Checkout
-				</button>
+				</a>
 			</div>
 			<% } %>
 		</div>

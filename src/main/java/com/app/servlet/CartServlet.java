@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.app.controller.MenuController;
 import com.app.entity.Menu;
-import com.app.entity.User;
 import com.app.pojo.Cart;
 import com.app.pojo.CartItem;
 
@@ -20,9 +19,7 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User user = (User) req.getSession().getAttribute("user");
-
-        if (user != null) {
+        if (req.getSession().getAttribute("username") != null) {
             HttpSession session = req.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
 
@@ -43,8 +40,8 @@ public class CartServlet extends HttpServlet {
                 updateCartItem(req, cart);
             } else if (action.equals("remove")) {
                 removeCartItem(req, cart);
-            } else {
-                resp.sendRedirect("pages/cart.jsp");
+            } else if (action.equals("nothing")) {
+                // return;
             }
             resp.sendRedirect("pages/cart.jsp");
         } else {

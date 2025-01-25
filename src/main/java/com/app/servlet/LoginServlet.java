@@ -25,9 +25,10 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             Timestamp lastLoginDate = new java.sql.Timestamp(System.currentTimeMillis());
+            HttpSession session = req.getSession(true);
+            session.setAttribute("lastLoginDate", user.getLastLoginDate());
             user.setLastLoginDate(lastLoginDate);
             UserController.updateLastLogin(user);
-            HttpSession session = req.getSession(true);
             session.setAttribute("username", user.getName());
             session.setAttribute("user", user);
             req.getRequestDispatcher("home").forward(req, resp);

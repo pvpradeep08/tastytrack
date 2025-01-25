@@ -46,8 +46,7 @@
                     </li>
                     <li>
                         <a href="#"
-                            ><ion-icon name="grid"></ion-icon
-                            ><span class="nav-text">Menu</span></a
+                            ><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a
                         >
                     </li>
                     <li>
@@ -57,7 +56,7 @@
                         >
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="dashboard"
                             ><ion-icon name="person-circle" class="profile-icon"></ion-icon
                             ><span class="nav-text"> <%= (String) session.getAttribute("username") != null ? session.getAttribute("username").toString().split(" ")[0] : "Login" %> </span></a
                         >
