@@ -36,11 +36,14 @@ public class Restaurant {
     @Column(name = "image_path")
     private String imagePath;
 
+    @Column(name = "popular")
+    private boolean popular;
+
     public Restaurant() {
     }
 
     public Restaurant(String name, String address, float rating, String cuisineType, boolean isActive, int deliveryTime,
-            String imagePath) {
+            String imagePath, boolean popular) {
         this.name = name;
         this.address = address;
         this.rating = rating;
@@ -51,7 +54,7 @@ public class Restaurant {
     }
 
     public Restaurant(int restaurantId, String name, String address, float rating, String cuisineType, boolean isActive,
-            int deliveryTime, String imagePath) {
+            int deliveryTime, String imagePath, boolean popular) {
         this.restaurantId = restaurantId;
         this.name = name;
         this.address = address;

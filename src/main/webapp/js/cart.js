@@ -1,9 +1,3 @@
-const prices = {
-    1: 12.99,
-    2: 14.99,
-    3: 8.99
-};
-
 function updateQuantity(itemId, change) {
     const quantityElement = document.getElementById(`quantity-${itemId}`);
     const priceElement = document.getElementById(`price-${itemId}`);

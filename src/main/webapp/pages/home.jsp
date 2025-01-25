@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="com.app.entity.Menu" %>
 <%@ page import="com.app.entity.Restaurant" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="images/logo/fevicon.svg" type="image/x-icon">
-
-		<title>Restaurants | Tasty Track</title>
-		<link rel="stylesheet" href="css/restaurant.css" />
+		<title>Home | Tasty Track</title>
+		<link
+			rel="shortcut icon"
+			href="images/logo/fevicon.svg"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="css/home.css" />
 		<link rel="stylesheet" href="css/navbar.css" />
 		<link rel="stylesheet" href="css/footer.css" />
 		<link
@@ -26,7 +30,7 @@
 		></script>
 	</head>
 	<body>
-	<nav class="navbar">
+        <nav class="navbar">
             <div class="navbar-container">
                 <a href="#" class="logo"
                     ><img src="images/logo/logo.svg" alt=""
@@ -69,46 +73,76 @@
             </div>
         </nav>
 		<header>
-			<h1><span>Restaurants Near You</span> <ion-icon name="storefront"></ion-icon></h1>
+			
+			<h1>
+				<span>Welcome to Tasty Track</span>
+				<ion-icon name="map-outline"></ion-icon>
+			</h1>
 		</header>
-		<main class="restaurants-container">
+
 		<% List<Restaurant> restaurants = (List<Restaurant>) request.getAttribute("restaurants"); %>
-		<% for (Restaurant restaurant : restaurants) { %>
-		<a href="menu?restaurantId=<%= restaurant.getRestaurantId()%>">
-			<div class="restaurant-card">
-				<div class="card-image">
-					<img src="<%= restaurant.getImagePath() %>" alt="Sample" />
-					<div class="overlay">
-						<span class="cuisine"><%= restaurant.getCuisineType() %></span>
-					</div>
-					<div class="status-tag <%= restaurant.isActive() ? "active" : "inactive" %> ">
-						<span><%= restaurant.isActive() ? "Open" : "Closed" %></span>
-						<ion-icon name="<%= restaurant.isActive() ? "restaurant" : "notifications-off-outline" %>"></ion-icon>
-					</div>
+
+		<% List<Menu> menus = (List<Menu>) request.getAttribute("menus"); %>
+
+		<div class="container">
+			<section id="restaurants">
+				<div class="slider-head">
+					<h2>Popular Restaurants</h2>
+					<a href="restaurants" class="view-all">View All <ion-icon name="arrow-forward"></ion-icon></a>
 				</div>
-				<div class="card-content">
-					<h2>
-						<ion-icon name="restaurant"></ion-icon>
-						<span><%= restaurant.getName() %></span>
-					</h2>
-					<p class="address">
-						<ion-icon name="location"></ion-icon>
-						<span><%= restaurant.getAddress() %></span>
-					</p>
-					<div class="time-rating-container">
-						<p class="delivery-time">
-							<ion-icon name="time"></ion-icon> <span><%= restaurant.getDeliveryTime() %> - <%= restaurant.getDeliveryTime() + 10 %> min</span>
-						</p>
-						<div class="rating">
-							<p class="rating-value">4.5</p>
-							<ion-icon name="star"></ion-icon>
-						</div>
+				<div class="slider-container">
+					<div class="slider" id="restaurant-slider">
+					<% for(Restaurant r : restaurants){ %>
+						<a href="menu?restaurantId=<%= r.getRestaurantId() %>" class="slider-link" ><div class="slide">
+							<img src="<%= r.getImagePath() %>" alt="<%= r.getName() %>" />
+							<h3><%= r.getName() %></h3>
+							<p><%= r.getAddress() %></p>
+							<div class="details">
+								<div class="tag"><%= r.getCuisineType() %></div>
+                                <div class="rating"> <%= r.getRating() %> <ion-icon name="star"></ion-icon></div>
+							</div>
+						</div></a>
+					<% } %>
 					</div>
+					<button class="slider-btn prev" onclick="slideRestaurants(-1)">
+						<ion-icon name="chevron-back-outline"></ion-icon>
+					</button>
+					<button class="slider-btn next" onclick="slideRestaurants(1)">
+						<ion-icon name="chevron-forward-outline"></ion-icon>
+					</button>
 				</div>
+			</section>
+
+			<section id="dishes">
+				<div class="slider-head">
+					<h2>Popular Dishes</h2>
+					<a href="restaurants" class="view-all">View All <ion-icon name="arrow-forward"></ion-icon></a>
 				</div>
-				</a>
-		<% } %>
-		</main>
+				<div class="slider-container">
+					<div class="slider" id="dish-slider">
+					<% for(Menu m : menus){ %>
+						<a class="slider-link" href="menu?restaurantId=<%= m.getRestaurantId() %>">
+							<div class="slide">
+								<img src="<%= m.getImagePath() %>" alt="<%= m.getMenuName() %>" />
+								<h3><%= m.getMenuName() %></h3>
+								<p><%= m.getDescription() %></p>
+								<div class="details">
+									<div class="price">₹ <%= m.getPrice() %></div>
+									<div class="rating"> <%= m.getRating() %> <ion-icon name="star"></ion-icon></div>
+								</div>
+							</div>
+						</a>
+						<% } %>
+					</div>
+					<button class="slider-btn prev" onclick="slideDishes(-1)">
+					<ion-icon name="chevron-back-outline"></ion-icon>
+					</button>
+					<button class="slider-btn next" onclick="slideDishes(1)">
+					<ion-icon name="chevron-forward-outline"></ion-icon>
+					</button>
+				</div>
+			</section>
+		</div>
 		<footer class="footer">
 			<div class="footer-content">
 				<div class="footer-section">
@@ -195,5 +229,6 @@
 			</div>
 		</footer>
 		<script src="js/navbar.js"></script>
+		<script src="js/home.js"></script>
 	</body>
 </html>

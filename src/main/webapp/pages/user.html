@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieExpress - User Profile</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .profile-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .profile-header {
+            background-color: #FF6B6B;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            margin-bottom: 20px;
+        }
+        .profile-name {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .profile-username {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        .profile-body {
+            padding: 20px;
+        }
+        .profile-section {
+            margin-bottom: 20px;
+        }
+        .profile-section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #FF6B6B;
+        }
+        .profile-info p {
+            margin-bottom: 5px;
+        }
+        .address-list, .favorite-restaurants {
+            list-style-type: none;
+        }
+        .address-list li, .favorite-restaurants li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        .order-history {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-history th, .order-history td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .order-history th {
+            background-color: #f2f2f2;
+        }
+        .edit-btn {
+            background-color: #FF6B6B;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .edit-btn:hover {
+            background-color: #ff4f4f;
+        }
+        @media (max-width: 600px) {
+            .profile-header {
+                padding: 20px;
+            }
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+            .profile-name {
+                font-size: 20px;
+            }
+            .profile-username {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/120" alt="Profile Picture" class="profile-img">
+                <h1 class="profile-name">Sarah Johnson</h1>
+                <p class="profile-username">@sarahj</p>
+            </div>
+            <div class="profile-body">
+                <div class="profile-section">
+                    <h2>Contact Information</h2>
+                    <p><strong>Email:</strong> sarah.johnson@example.com</p>
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                </div>
+                <div class="profile-section">
+                    <h2>Delivery Addresses</h2>
+                    <ul class="address-list" id="address-list">
+                        <li>123 Main St, Apt 4B, Cityville, ST 12345</li>
+                        <li>456 Work Ave, Suite 789, Businesstown, ST 67890</li>
+                    </ul>
+                    <button class="edit-btn" onclick="editAddresses()">Edit Addresses</button>
+                </div>
+                <div class="profile-section">
+                    <h2>Favorite Restaurants</h2>
+                    <ul class="favorite-restaurants">
+                        <li>Tasty Bites</li>
+                        <li>Sushi Haven</li>
+                        <li>Pizza Paradise</li>
+                    </ul>
+                </div>
+                <div class="profile-section">
+                    <h2>Order History</h2>
+                    <table class="order-history">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Restaurant</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-05-15</td>
+                                <td>Tasty Bites</td>
+                                <td>$35.99</td>
+                                <td>Delivered</td>
+                            </tr>
+                            <tr>
+                                <td>2023-05-10</td>
+                                <td>Sushi Haven</td>
+                                <td>$52.50</td>
+                                <td>Delivered</td>
+                            </tr>
+                            <tr>
+                                <td>2023-05-05</td>
+                                <td>Pizza Paradise</td>
+                                <td>$28.75</td>
+                                <td>Delivered</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function editAddresses() {
+            const addressList = document.getElementById('address-list');
+            const currentAddresses = Array.from(addressList.children).map(li => li.textContent);
+            
+            let editedAddresses = [];
+            currentAddresses.forEach((address, index) => {
+                const editedAddress = prompt(`Edit address ${index + 1}:`, address);
+                if (editedAddress) {
+                    editedAddresses.push(editedAddress);
+                }
+            });
+
+            const newAddress = prompt("Add a new address (or click Cancel to finish):");
+            if (newAddress) {
+                editedAddresses.push(newAddress);
+            }
+
+            addressList.innerHTML = '';
+            editedAddresses.forEach(address => {
+                const li = document.createElement('li');
+                li.textContent = address;
+                addressList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

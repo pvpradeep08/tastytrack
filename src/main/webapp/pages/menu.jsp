@@ -6,7 +6,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Restaurant Menu</title>
+    	<link rel="shortcut icon" href="images/logo/fevicon.svg" type="image/x-icon">
+
+		<title>Restaurant Menu | Tasty Track</title>
 		<link rel="stylesheet" href="css/menu.css" />
 		<link rel="stylesheet" href="css/navbar.css">
 		<link rel="stylesheet" href="css/footer.css">
@@ -24,54 +26,57 @@
 		></script>
 	</head>
 	<body>
+		
 		<nav class="navbar">
-			<div class="navbar-container">
-				<a href="#" class="logo"
-					><img src="images/logo/logo.svg" alt=""
-				/></a>
-				<ul class="nav-links">
-					<li>
-						<a href="#"
-							><ion-icon name="home-outline"></ion-icon
-							><span class="nav-text">Home</span></a
-						>
-					</li>
-					<li>
-						<a href="#"
-							><ion-icon name="restaurant-outline"></ion-icon
-							><span class="nav-text">Restaurants</span></a
-						>
-					</li>
-					<li>
-						<a href="#"
-							><ion-icon name="cart-outline"></ion-icon
-							><span class="nav-text">Cart</span></a
-						>
-					</li>
-					<li>
-						<a href="#"
-							><ion-icon name="person-outline"></ion-icon
-							><span class="nav-text">Profile</span></a
-						>
-					</li>
-					<li>
-						<a href="#"
-							><ion-icon name="pricetag-outline"></ion-icon
-							><span class="nav-text">Offers</span></a
-						>
-					</li>
-				</ul>
-				<button class="mobile-menu-btn"><ion-icon name="apps-outline"></ion-icon></button>
-			</div>
-		</nav>
+            <div class="navbar-container">
+                <a href="#" class="logo"
+                    ><img src="images/logo/logo.svg" alt=""
+                /></a>
+                <ul class="nav-links">
+                    <li>
+                        <a href="home"
+                            ><ion-icon name="home"></ion-icon
+                            ><span class="nav-text">Home</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="restaurants"
+                            ><ion-icon name="restaurant"></ion-icon
+                            ><span class="nav-text">Restaurants</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#"
+                            ><ion-icon name="grid"></ion-icon
+                            ><span class="nav-text">Menu</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="pages/cart.jsp"
+                            ><ion-icon name="cart" class="cart-icon"></ion-icon
+                            ><span class="nav-text">Cart</span></a
+                        >
+                    </li>
+                    <li>
+                        <a href="#"
+                            ><ion-icon name="person-circle" class="profile-icon"></ion-icon
+                            ><span class="nav-text"> <%= (String) session.getAttribute("username") != null ? session.getAttribute("username").toString().split(" ")[0] : "Login" %> </span></a
+                        >
+                    </li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <ion-icon name="apps-outline"></ion-icon>
+                </button>
+            </div>
+        </nav>
 		<header>
-			<h1>Our Delicious Menu</h1>
+			<h1><span>Our Delicious Menu</span> <ion-icon name="restaurant"></ion-icon></h1>
 		</header>
 		<main class="menu-container">
 
 
 		<% List<Menu> menus = (List<Menu>) request.getAttribute("menus"); %>
-		<% for( Menu menu : menus ) {%>
+		<% for( Menu menu : menus ) { %>
 			<div class="menu-item <%=menu.isAvailable()?"":"unavailable"%> ">
 				<img
 					src="<%= menu.getImagePath() %>"
@@ -85,13 +90,16 @@
 					<span class="rating">★ <%= menu.getRating() %></span>
 					<span class="price" data-base-price="<%= menu.getPrice() %>">₹<%= menu.getPrice() %></span>
 				</div>
-				<form class="cart-controls" action="/tastytrack/" >
+				<form class="cart-controls" action="cart" >
+					<input type="hidden" name="menuId" value="<%= menu.getMenuId() %>" >
+					<input type="hidden" name="restaurantId" value="<%= menu.getRestaurantId()%>" >
+					<input type="hidden" name="quantity" value="1" >
+					<input type="hidden" name="action" value="add" >
 					<button type="submit" class="add-to-cart">Add to Cart</button>
 				</form>
-			
 			</div>
 
-		<%}%>
+		<% } %>
 
 			
 		</main>

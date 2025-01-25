@@ -89,6 +89,20 @@ public class MenuDao {
         }
     }
 
+    public static List<Menu> getAllPopularMenus() {
+        try {
+            session = HibernateConnect.getSession().openSession();
+            return session.createQuery("from Menu m where m.popular=true", Menu.class).getResultList();
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+            HibernateConnect.closeSession();
+        }
+    }
+
     public static boolean deleteMenu(int id) {
         try {
             session = HibernateConnect.getSession().openSession();
@@ -105,5 +119,4 @@ public class MenuDao {
             HibernateConnect.closeSession();
         }
     }
-
 }

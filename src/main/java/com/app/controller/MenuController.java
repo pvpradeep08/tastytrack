@@ -23,6 +23,10 @@ public class MenuController {
         return MenuDao.getAllMenusById(id);
     }
 
+    public static List<Menu> getAllPopularMenus() {
+        return MenuDao.getAllPopularMenus();
+    }
+
     public static boolean updateMenu(Menu menu) {
         return MenuDao.updateMenu(menu);
     }

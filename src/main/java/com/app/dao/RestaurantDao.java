@@ -44,6 +44,20 @@ public class RestaurantDao {
         }
     }
 
+    public static List<Restaurant> getAllPopularRestaurants() {
+        try {
+            session = HibernateConnect.getSession().openSession();
+            return session.createQuery("from Restaurant r where r.popular=true", Restaurant.class).getResultList();
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+            HibernateConnect.closeSession();
+        }
+    }
+
     public static Restaurant getRestaurant(int id) {
         try {
             session = HibernateConnect.getSession().openSession();

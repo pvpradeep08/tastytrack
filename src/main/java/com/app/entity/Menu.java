@@ -37,11 +37,14 @@ public class Menu {
     @Column(name = "image_path")
     private String imagePath;
 
+    @Column(name = "popular")
+    private boolean popular;
+
     public Menu() {
     }
 
     public Menu(int restaurantId, String menuName, String description, float price, float rating,
-            boolean isAvailable, String imagePath) {
+            boolean isAvailable, String imagePath, boolean popular) {
         this.restaurantId = restaurantId;
         this.menuName = menuName;
         this.description = description;
@@ -49,10 +52,11 @@ public class Menu {
         this.rating = rating;
         this.isAvailable = isAvailable;
         this.imagePath = imagePath;
+        this.popular = popular;
     }
 
     public Menu(int menuId, int restaurantId, String menuName, String description, float price, float rating,
-            boolean isAvailable, String imagePath) {
+            boolean isAvailable, String imagePath, boolean popular) {
         this.menuId = menuId;
         this.restaurantId = restaurantId;
         this.menuName = menuName;
@@ -127,11 +131,19 @@ public class Menu {
         this.imagePath = imagePath;
     }
 
+    public boolean isPopular() {
+        return popular;
+    }
+
+    public void setPopular(boolean popular) {
+        this.popular = popular;
+    }
+
     @Override
     public String toString() {
         return "Menu [menuId=" + menuId + ", restaurantId=" + restaurantId + ", menuName=" + menuName + ", description="
                 + description + ", price=" + price + ", rating=" + rating + ", isAvailable=" + isAvailable
-                + ", imagePath=" + imagePath + "]";
+                + ", imagePath=" + imagePath + ", popular=" + popular + "]";
     }
 
 }

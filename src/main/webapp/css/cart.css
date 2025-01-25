@@ -12,13 +12,12 @@ html {
 body {
     font-family: "Poppins", sans-serif;
     line-height: 1.6;
-    background-color:#ECDFCC ;
-    /* background: linear-gradient(to right, #93af65, #b2d2a5); */
+    background-color: #ECDFCC;
 }
 
 .cart-container {
     max-width: 800px;
-    margin: 150px auto 50px;
+    margin: 100px auto 50px;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -39,28 +38,95 @@ h1 ion-icon {
     color: #45a049;
 }
 
+.empty-cart {
+    margin: 0 auto;
+    text-align: center;
+    background: lightgrey;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px 20px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.empty-cart ion-icon {
+    font-size: 48px;
+    color: #ff6b6b;
+    margin-bottom: 20px;
+}
+
+.empty-cart h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.empty-cart p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.empty-cart a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.empty-cart a:hover {
+    background-color: #ff4d4d;
+}
+
 .cart-item {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
+    background-color: #f0f2f5;
     border-bottom: 1px solid #eee;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.cart-item .item-left,
+.cart-item .item-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.item-image-box {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    margin-right: 15px;
+    position: relative;
 }
 
 .item-image {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-right: 15px;
     border-radius: 4px;
+    transition: transform 0.3s ease;
 }
 
-.item-details {
-    flex-grow: 1;
+.item-image:hover {
+    border-radius: 4px;
+    transform: scale(1.1);
 }
 
 .item-name {
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
 .item-description {
@@ -71,11 +137,10 @@ h1 ion-icon {
 .item-quantity {
     display: flex;
     align-items: center;
-    margin: 0 15px;
 }
 
 .quantity-btn {
-    background-color: #f0f0f0;
+    background-color: #fffafa;
     border: none;
     width: 30px;
     height: 30px;
@@ -91,8 +156,31 @@ h1 ion-icon {
 
 .item-price {
     font-weight: bold;
-    min-width: 100px;
+    /* min-width: 10px; */
     text-align: right;
+}
+
+.item-clear button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.item-clear button ion-icon {
+    font-size: 20px;
+}
+
+.item-clear button:hover {
+    background-color: #ff4d4d;
 }
 
 .cart-summary {
@@ -105,6 +193,24 @@ h1 ion-icon {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+.add-more:link,
+.add-more:visited {
+    display: inline-block;
+    /* margin-top: 20px; */
+    padding: 6px 20px;
+    font-size: 16px;
+    background-color: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.add-more:hover,
+.add-more:active {
+    background-color: #ff4d4d;
 }
 
 .checkout-btn {
@@ -120,4 +226,12 @@ h1 ion-icon {
 
 .checkout-btn:hover {
     background-color: #45a049;
+}
+
+/* below 700px */
+
+@media screen and (max-width: 700px) {
+    .item-image-box{
+        display: none;
+    }
 }

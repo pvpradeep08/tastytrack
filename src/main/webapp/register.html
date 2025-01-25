@@ -3,7 +3,12 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Glassmorphic Register</title>
+		<link
+			rel="shortcut icon"
+			href="images/logo/fevicon.svg"
+			type="image/x-icon"
+		/>
+		<title>Register Page | Tasty Track</title>
 		<link rel="stylesheet" href="css/register.css" />
 	</head>
 	<body>
@@ -11,7 +16,7 @@
 			<div class="shape"></div>
 			<div class="shape"></div>
 		</div>
-		<form id="registerForm" action="pages/restaurant.html">
+		<form id="registerForm" action="home">
 			<h3>Register Here</h3>
 			<div class="form-grid">
 				<div class="form-group">
@@ -64,7 +69,7 @@
 						value="Vicky@2003"
 					/>
 				</div>
-				<div class="form-group  full-width">
+				<div class="form-group">
 					<label for="phone">Phone</label>
 					<input
 						type="tel"
@@ -74,16 +79,26 @@
 						value="1234567890"
 					/>
 				</div>
+				<!-- role dropdown -->
+				<div class="form-group">
+					<label for="role">Role</label>
+					<select id="role" required>
+						<option value="user">User</option>
+						<option value="admin">Admin</option>
+						<option value="agent">Agent</option>
+					</select>
+				</div>
 				<div class="form-group full-width">
 					<label for="address">Address</label>
 					<textarea id="address" placeholder="Your Address" required></textarea>
 				</div>
 			</div>
+
 			<button type="submit">Register</button>
 			<div class="links">
 				<a href="./login.html" class="login">Already have an account? Log In</a>
 			</div>
 		</form>
-		<script src="./js/register.js"></script>
+		<script src="js/register.js"></script>
 	</body>
 </html>

@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Tasty Track</title>
-    <link rel="stylesheet" href="./css/login.css">
-</head>
-<body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <form action="restaurants" >
-        <h3>Login Here</h3>
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username or Email" id="username">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
-        <button>Log In</button>
-        <div class="links">
-            <a href="register.html" class="signup">Don't have an account? Sign Up</a>
-        </div>
-    </form>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="shortcut icon"
+			href="images/logo/fevicon.svg"
+			type="image/x-icon"
+		/>
+		<title>Login Page | Tasty Track</title>
+		<link rel="stylesheet" href="./css/login.css" />
+	</head>
+	<body>
+		<div class="background">
+			<div class="shape"></div>
+			<div class="shape"></div>
+		</div>
+		<form action="login" method="post">
+			<h3>Login Here</h3>
+			<label for="username">Username</label>
+			<input
+				type="text"
+				placeholder="Username or Email"
+				id="username"
+				name="username"
+				required
+				value="vicky11"
+			/>
+			<label for="password">Password</label>
+			<input
+				name="password"
+				type="password"
+				placeholder="Password"
+				id="password"
+				required
+				value="vicky@123"
+			/>
+			<button type="submit">Log In</button>
+			<div class="links">
+				<a href="register.html" class="signup"
+					>Don't have an account? Sign Up</a
+				>
+			</div>
+		</form>
+	</body>
 </html>
-

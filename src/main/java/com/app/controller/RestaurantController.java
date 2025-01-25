@@ -14,6 +14,10 @@ public class RestaurantController {
         return RestaurantDao.getAllRestaurants();
     }
 
+    public static List<Restaurant> getAllPopularRestaurants() {
+        return RestaurantDao.getAllPopularRestaurants();
+    }
+
     public static Restaurant getRestaurant(int id) {
         return RestaurantDao.getRestaurant(id);
     }
