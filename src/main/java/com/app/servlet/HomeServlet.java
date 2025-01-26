@@ -19,7 +19,6 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if ( req.getSession().getAttribute("username") != null) {
-
             List<Restaurant> restaurants = RestaurantController.getAllPopularRestaurants();
             List<Menu> menus = MenuController.getAllPopularMenus();
             req.setAttribute("restaurants", restaurants);

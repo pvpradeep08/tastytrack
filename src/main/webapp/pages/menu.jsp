@@ -57,7 +57,7 @@
                         >
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="dashboard"
                             ><ion-icon name="person-circle" class="profile-icon"></ion-icon
                             ><span class="nav-text"> <%= (String) session.getAttribute("username") != null ? session.getAttribute("username").toString().split(" ")[0] : "Login" %> </span></a
                         >
@@ -69,7 +69,7 @@
             </div>
         </nav>
 		<header>
-			<h1><span>Our Delicious Menu</span> <ion-icon name="restaurant"></ion-icon></h1>
+			<h1><span><%= request.getAttribute("restaurantName") %>'s Menu Items</span> <ion-icon name="restaurant"></ion-icon></h1>
 		</header>
 		<main class="menu-container">
 
@@ -87,7 +87,7 @@
 				</p>
 				<div class="details">
 					<span class="rating">★ <%= menu.getRating() %></span>
-					<span class="price" data-base-price="<%= menu.getPrice() %>">₹<%= menu.getPrice() %></span>
+					<span class="price" data-base-price="<%= menu.getPrice() %>">₹ <%= menu.getPrice() %></span>
 				</div>
 				<form class="cart-controls" action="cart" >
 					<input type="hidden" name="menuId" value="<%= menu.getMenuId() %>" >

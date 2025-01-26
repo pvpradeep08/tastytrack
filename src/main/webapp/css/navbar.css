@@ -87,6 +87,10 @@
         width: 90%;
     }
 
+    .logo {
+        width: 150px;
+    }
+
     .nav-links {
         display: none;
         flex-direction: column;
@@ -131,6 +135,10 @@
 /* Media query for tablet screen */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 
+    .logo {
+        width: 150px;
+    }
+
     /* For screens larger than 768px, show both icon and text */
     .nav-text {
         display: none;
@@ -144,7 +152,7 @@
     .navbar-container {
         max-width: 1200px;
         /* Set a max-width for the navbar */
-        margin: 0 auto;
+        /* margin: 0 auto; */
     }
 
     .nav-links li a ion-icon {
@@ -152,9 +160,3 @@
         font-size: 25px;
     }
 }
-
-/* .box {
-    width: 20px;
-    background-color: #fff;
-    height: 2000px;
-} */

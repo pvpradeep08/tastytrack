@@ -80,11 +80,10 @@
 			
 			<div id="cart-items">
 
-				<% Cart cart = (Cart) session.getAttribute("cart");
-				Integer currentRestaurantId = (Integer) session.getAttribute("currentRestaurantId"); 
+				<% Cart cart = (Cart) session.getAttribute("cart"); %>
+				<% Integer currentRestaurantId = (Integer) session.getAttribute("currentRestaurantId"); %>
 
-					if(cart == null || cart.getCart().isEmpty()) {
-						%>
+					<% if(cart == null || cart.getCart().isEmpty()) { %>
 						<div class="empty-cart">
 							<ion-icon name="trash-bin"></ion-icon>
 							<h2>Your cart is empty</h2>
@@ -92,7 +91,6 @@
 							<a href="../home"> Start Ordering </a>
 						</div>
 						<%
-						return;
 					}
 					else {
 						for(CartItem item : cart.getCart().values()) { %>
@@ -133,7 +131,7 @@
 								</button>
 							</form>
 						</div>
-						<div class="item-price" id="price-1"> ₹<%= item.getPrice() * item.getQuantity() %></div>
+						<div class="item-price" id="price-1"> ₹ <%= item.getPrice() * item.getQuantity() %></div>
 							<form action="../cart" class="item-clear" >
 								<input type="hidden" name="restaurantId" value="<%= (Integer) session.getAttribute("currentRestaurantId") %>" >
 								<input type="hidden" name="menuId" value="<%= item.getId() %>" />
@@ -147,20 +145,15 @@
 					<%	}
 					}	
 				%>
-
-
-				
-
-				
 			</div>
 			<% if(cart != null && !cart.getCart().isEmpty()) { %>
 			<div class="cart-summary">
 				<div class="cart-total">
-					Total Price: ₹<span id="cart-total"><%= cart.getTotal() %></span>
+					Total Price: ₹ <span id="cart-total"><%= cart.getTotal() %></span>
 				</div>
 				<a href="../menu?restaurantId=<%= currentRestaurantId %>" class="add-more">Add More Items to Cart</a>
-				<a class="checkout-btn" href="../pages/checkout.html" >
-					Proceed to Checkout
+				<a class="checkout-btn" href="../pages/checkout.jsp" >
+					Proceed to Checkout 
 				</a>
 			</div>
 			<% } %>

@@ -177,6 +177,12 @@ h2 {
     right: 10px;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .slider-link {
+        flex: 0 0 45%;
+    }
+}
+
 @media (max-width: 768px) {
     .slider-link {
         flex: 0 0 100%;

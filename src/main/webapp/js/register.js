@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const confirmPassword = document.getElementById("confirmPassword");
 
 	form.addEventListener("submit", (event) => {
-		// event.preventDefault();
+		event.preventDefault();
 
 		// Remove any existing error messages
 		document.querySelectorAll(".error").forEach((e) => e.remove());
@@ -65,6 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			showError("role", "Please select a role");
 			isValid = false;
 		}
+
+		if (isValid) {
+			form.submit();
+		}
 	});
 
 	function showError(fieldId, message) {
@@ -76,4 +80,3 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-document.querySelector("#address").value = "123 Main St, Anytown, USA";

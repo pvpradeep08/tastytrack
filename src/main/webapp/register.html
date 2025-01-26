@@ -16,38 +16,20 @@
 			<div class="shape"></div>
 			<div class="shape"></div>
 		</div>
-		<form id="registerForm" action="home">
+		<form id="registerForm" action="register">
 			<h3>Register Here</h3>
 			<div class="form-grid">
 				<div class="form-group">
 					<label for="name">Name</label>
-					<input
-						type="text"
-						placeholder="Full Name"
-						id="name"
-						required
-						value="Vicky"
-					/>
+					<input type="text" name="name" placeholder="Full Name" id="name" required />
 				</div>
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input
-						type="text"
-						placeholder="Username"
-						id="username"
-						required
-						value="Vicky"
-					/>
+					<input type="text" name="username" placeholder="Username" id="username" required />
 				</div>
 				<div class="form-group full-width">
 					<label for="email">Email</label>
-					<input
-						type="email"
-						placeholder="Email"
-						id="email"
-						required
-						value="Vicky@gmail.com"
-					/>
+					<input type="email" placeholder="Email" name="email" id="email" required />
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>
@@ -55,8 +37,8 @@
 						type="password"
 						placeholder="Password"
 						id="password"
+						name="password"
 						required
-						value="Vicky@2003"
 					/>
 				</div>
 				<div class="form-group">
@@ -66,37 +48,30 @@
 						placeholder="Confirm Password"
 						id="confirmPassword"
 						required
-						value="Vicky@2003"
 					/>
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone</label>
-					<input
-						type="tel"
-						placeholder="Phone Number"
-						id="phone"
-						required
-						value="1234567890"
-					/>
+					<input type="tel" placeholder="Phone Number" id="phone" name="phone" required />
 				</div>
 				<!-- role dropdown -->
 				<div class="form-group">
 					<label for="role">Role</label>
-					<select id="role" required>
-						<option value="user">User</option>
+					<select id="role" name="role" required>
+						<option value="user" selected>User</option>
 						<option value="admin">Admin</option>
 						<option value="agent">Agent</option>
 					</select>
 				</div>
 				<div class="form-group full-width">
 					<label for="address">Address</label>
-					<textarea id="address" placeholder="Your Address" required></textarea>
+					<textarea id="address" placeholder="Your Address" name="address" required></textarea>
 				</div>
 			</div>
 
 			<button type="submit">Register</button>
 			<div class="links">
-				<a href="./login.html" class="login">Already have an account? Log In</a>
+				<a href="login.html" class="login">Already have an account? Log In</a>
 			</div>
 		</form>
 		<script src="js/register.js"></script>

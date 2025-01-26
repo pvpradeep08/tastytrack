@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -69,10 +71,10 @@
 	<body>
 		<div class="error-container">
 			<img src="images/logo/logo.svg" alt="Error" />
-			<h1>Oops! Page not found</h1>
+			<h1>Oops! <%= request.getAttribute("message") %></h1>
 			<p>It seems you've taken a wrong turn.</p>
 			<p>Let’s get you back on track!</p>
-			<a href="login.html" class="btn">Go to Login Page</a>
+			<a href="login.html" class="btn">Go to LogIn> Page</a>
 		</div>
 	</body>
 </html>

@@ -24,16 +24,19 @@ public class LoginServlet extends HttpServlet {
         User user = UserController.validateUser(username, password);
 
         if (user != null) {
-            Timestamp lastLoginDate = new java.sql.Timestamp(System.currentTimeMillis());
+            Timestamp lastLoginDate = new Timestamp(System.currentTimeMillis());
             HttpSession session = req.getSession(true);
             session.setAttribute("lastLoginDate", user.getLastLoginDate());
+
             user.setLastLoginDate(lastLoginDate);
             UserController.updateLastLogin(user);
             session.setAttribute("username", user.getName());
             session.setAttribute("user", user);
-            req.getRequestDispatcher("home").forward(req, resp);
+                req.getRequestDispatcher("home").forward(req, resp);
         } else {
-            req.getRequestDispatcher("/pages/error.html").forward(req, resp);
+            req.setAttribute("message", "User Not Found By This Username or Email");
+            req.setAttribute("redirect", "login");
+            req.getRequestDispatcher("error.jsp").forward(req, resp);
         }
     }
 }

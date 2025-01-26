@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Cart {
     private Map<Integer, CartItem> cart;
-
     public Cart() {
         this.cart = new HashMap<>();
     }
@@ -46,4 +45,7 @@ public class Cart {
         }
         return total;
     }
+
+    
+
 }

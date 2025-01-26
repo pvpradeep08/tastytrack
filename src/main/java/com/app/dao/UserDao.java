@@ -74,7 +74,25 @@ public class UserDao {
     public static User getUserByUsername(String username) {
         try {
             session = HibernateConnect.getSession().openSession();
-            return session.get(User.class, username);
+            Query<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+            query.setParameter("username", username);
+            return query.uniqueResult();
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+            HibernateConnect.closeSession();
+        }
+    }
+
+    public static User getUserByEmail(String email) {
+        try {
+            session = HibernateConnect.getSession().openSession();
+            Query<User> query = session.createQuery("FROM User WHERE email = :email", User.class);
+            query.setParameter("email", email);
+            return query.uniqueResult();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
@@ -188,21 +206,21 @@ public class UserDao {
         }
     }
 
-        public static boolean updateLastLogin(User user) {
-            try {
-                session = HibernateConnect.getSession().openSession();
-                session.beginTransaction();
-                session.merge(user);
-                session.getTransaction().commit();
-                return true;
-            } catch (HibernateException e) {
-                session.getTransaction().rollback();
-                e.printStackTrace();
-                return false;
-            } finally {
-                session.close();
-                HibernateConnect.closeSession();
-            }
+    public static boolean updateLastLogin(User user) {
+        try {
+            session = HibernateConnect.getSession().openSession();
+            session.beginTransaction();
+            session.merge(user);
+            session.getTransaction().commit();
+            return true;
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+            HibernateConnect.closeSession();
         }
+    }
 
 }

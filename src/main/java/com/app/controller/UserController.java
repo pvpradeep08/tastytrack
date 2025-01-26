@@ -39,6 +39,10 @@ public class UserController {
         return UserDao.getUserByUsername(username);
     }
 
+    public static User getUserByEmail(String email) {
+        return UserDao.getUserByEmail(email);
+    }
+
     public static List<User> getAllUsers() {
         return UserDao.getAllUsers();
     }
