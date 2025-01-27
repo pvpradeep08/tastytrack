@@ -68,7 +68,7 @@
                     >
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="../orderHistory"
                         ><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a
                     >
                 </li>

@@ -5,15 +5,15 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import com.app.entity.Orders;
+import com.app.entity.Order;
 import com.app.util.HibernateConnect;
 
 @SuppressWarnings("CallToPrintStackTrace")
-public class OrdersDao {
+public class OrderDao {
 
     private static Session session;
 
-    public static boolean addOrder(Orders orders) {
+    public static boolean addOrder(Order orders) {
         try {
             session = HibernateConnect.getSession().openSession();
             session.beginTransaction();
@@ -30,7 +30,7 @@ public class OrdersDao {
         }
     }
 
-    public static boolean updateOrder(Orders orders) {
+    public static boolean updateOrder(Order orders) {
         try {
             session = HibernateConnect.getSession().openSession();
             session.beginTransaction();
@@ -51,7 +51,7 @@ public class OrdersDao {
         try {
             session = HibernateConnect.getSession().openSession();
             session.beginTransaction();
-            session.remove(session.get(Orders.class, id));
+            session.remove(session.get(Order.class, id));
             session.getTransaction().commit();
             return true;
         } catch (HibernateException e) {
@@ -68,7 +68,7 @@ public class OrdersDao {
         try {
             session = HibernateConnect.getSession().openSession();
             session.beginTransaction();
-            session.createQuery("delete from Orders").executeUpdate();
+            session.createQuery("delete from Order").executeUpdate();
             session.getTransaction().commit();
             return true;
         } catch (HibernateException e) {
@@ -81,10 +81,10 @@ public class OrdersDao {
         }
     }
 
-    public static List<Orders> getAllOrders() {
+    public static List<Order> getAllOrders( int id ) {
         try {
             session = HibernateConnect.getSession().openSession();
-            return session.createQuery("from Orders", Orders.class).getResultList();
+            return session.createQuery("from Order o where o.userId=" + id + " order by orderDate desc", Order.class).getResultList();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
@@ -95,10 +95,10 @@ public class OrdersDao {
         }
     }
 
-    public static Orders getOrder(int id) {
+    public static Order getOrder(int id) {
         try {
             session = HibernateConnect.getSession().openSession();
-            return session.get(Orders.class, id);
+            return session.get(Order.class, id);
         } catch (HibernateException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
@@ -109,10 +109,11 @@ public class OrdersDao {
         }
     }
 
-    public static List<Orders> getAllOrdersById(int id) {
+    public static List<Order> getAllOrdersById(int id) {
         try {
             session = HibernateConnect.getSession().openSession();
-            return session.createQuery("from Orders o where o.user_id=" + id + "", Orders.class).getResultList();
+            return session.createQuery("from Order o where o.userId=" + id + " order by o.orderDate desc ", Order.class)
+                    .getResultList();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
@@ -123,10 +124,10 @@ public class OrdersDao {
         }
     }
 
-    public static List<Orders> getAllOrdersByStatus(String status) {
+    public static List<Order> getAllOrdersByStatus(String status) {
         try {
             session = HibernateConnect.getSession().openSession();
-            return session.createQuery("from Orders o where o.status='" + status + "'", Orders.class).getResultList();
+            return session.createQuery("from Order o where o.status='" + status + "'", Order.class).getResultList();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
@@ -137,10 +138,11 @@ public class OrdersDao {
         }
     }
 
-    public static List<Orders> getRecentOrders() {
+    public static List<Order> getRecentOrdersByUserId(int id) {
         try {
             session = HibernateConnect.getSession().openSession();
-            return session.createQuery("from Orders o order by o.date desc", Orders.class).setMaxResults(3)
+            return session.createQuery("from Order o where o.userId=" + id + " order by o.orderDate desc", Order.class)
+                    .setMaxResults(3)
                     .getResultList();
         } catch (HibernateException e) {
             session.getTransaction().rollback();

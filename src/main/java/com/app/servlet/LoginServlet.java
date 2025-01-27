@@ -2,8 +2,12 @@ package com.app.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 
+import com.app.controller.OrderController;
 import com.app.controller.UserController;
+import com.app.dao.OrderDao;
+import com.app.entity.Order;
 import com.app.entity.User;
 
 import jakarta.servlet.ServletException;
@@ -32,7 +36,17 @@ public class LoginServlet extends HttpServlet {
             UserController.updateLastLogin(user);
             session.setAttribute("username", user.getName());
             session.setAttribute("user", user);
-                req.getRequestDispatcher("home").forward(req, resp);
+
+            int userId = user.getUserId();
+
+            List<Order> orders = OrderDao.getAllOrdersById(userId);
+            int ordersCount = orders.size();
+            session.setAttribute("ordersCount", ordersCount);
+
+            List<Order> recentOrders = OrderController.getRecentOrdersByUserId(userId);
+            session.setAttribute("recentOrders", recentOrders);
+
+            req.getRequestDispatcher("home").forward(req, resp);
         } else {
             req.setAttribute("message", "User Not Found By This Username or Email");
             req.setAttribute("redirect", "login");

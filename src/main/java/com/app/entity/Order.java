@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "orders")
-public class Orders {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,11 +39,11 @@ public class Orders {
     @Column(name = "payment_method")
     private String paymentMethod;
 
-    public Orders() {
+    public Order() {
 
     }
 
-    public Orders(int userId, int restaurantId, float totalAmount, float totalAmountWithTax,
+    public Order(int userId, int restaurantId, float totalAmount, float totalAmountWithTax,
             String status, String paymentMethod) {
         this.userId = userId;
         this.restaurantId = restaurantId;
@@ -54,12 +54,24 @@ public class Orders {
         this.paymentMethod = paymentMethod;
     }
 
-    public Orders(int orderId, int userId, int restaurantId, float totalAmount,
+    public Order(int orderId, int userId, int restaurantId, float totalAmount,
             float totalAmountWithTax, String status, String paymentMethod) {
         this.orderId = orderId;
         this.userId = userId;
         this.restaurantId = restaurantId;
         this.orderDate = new Timestamp(System.currentTimeMillis());
+        this.totalAmount = totalAmount;
+        this.totalAmountWithTax = totalAmountWithTax;
+        this.status = status;
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Order(int orderId, int userId, int restaurantId, Timestamp orderDate, float totalAmount,
+            float totalAmountWithTax, String status, String paymentMethod) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.restaurantId = restaurantId;
+        this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.totalAmountWithTax = totalAmountWithTax;
         this.status = status;

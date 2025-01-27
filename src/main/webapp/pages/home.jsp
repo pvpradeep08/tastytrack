@@ -49,7 +49,7 @@
                         >
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="orders"
                             ><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a
                         >
                     </li>

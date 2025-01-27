@@ -5,7 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.app.entity.Menu;
-import com.app.entity.Orders;
+import com.app.entity.Order;
+import com.app.entity.OrderItem;
 import com.app.entity.Restaurant;
 import com.app.entity.User;
 
@@ -16,7 +17,8 @@ public class HibernateConnect {
     public static SessionFactory getSession() {
         try {
             sessionFactory = new Configuration().configure().addAnnotatedClass(Restaurant.class)
-                    .addAnnotatedClass(Menu.class).addAnnotatedClass(User.class).addAnnotatedClass(Orders.class)
+                    .addAnnotatedClass(Menu.class).addAnnotatedClass(User.class).addAnnotatedClass(Order.class)
+                    .addAnnotatedClass(OrderItem.class)
                     .buildSessionFactory();
         } catch (HibernateException e) {
             e.printStackTrace();

@@ -77,55 +77,21 @@ document.getElementById(
 	"accountCreated"
 ).textContent = `Account created: ${formatDateTime(createdAt)}`;
 
-// Mock user data
-const userData = {
-	// createdAt: new Date("2024-01-15T10:30:00"),
-	// lastLogin: new Date("2024-03-14T15:45:00"),
-	orders: [
-		{
-			id: "123456",
-			items: 2,
-			total: 32.5,
-			date: new Date("2024-03-12T14:30:00"),
-		},
-		{
-			id: "123457",
-			items: 1,
-			total: 18.99,
-			date: new Date("2024-03-10T12:15:00"),
-		},
-		{
-			id: "123458",
-			items: 3,
-			total: 45.75,
-			date: new Date("2024-03-08T19:20:00"),
-		},
-	],
-};
-
 // Populate recent orders
-const ordersList = document.querySelector(".orders-list");
-userData.orders.forEach((order) => {
-	const orderElement = document.createElement("div");
-	orderElement.className = "order-item";
-	orderElement.innerHTML = `
-      <div class="flex items-center space-x-4">
-        <div class="bg-white p-2 rounded-md">
-          <span class="icon">📦</span>
-        </div>
-        <div>
-          <p class="font-medium text-gray-900">Order #${order.id}</p>
-          <p class="text-sm text-gray-500">${
-						order.items
-					} items • $${order.total.toFixed(2)}</p>
-        </div>
-      </div>
-      <div class="flex items-center">
-        <span class="icon">🕒</span>
-        <span class="text-sm text-gray-500">${formatRelativeTime(
-					order.date
-				)}</span>
-      </div>
-    `;
-	ordersList.appendChild(orderElement);
-});
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all elements with the 'recent-order-date' class
+    const orderDateElements = document.querySelectorAll(".recent-order-date");
+
+    // Function to format the date
+    const formatOrderDate = (dateString) => {
+      const date = new Date(dateString);
+      const options = { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" };
+      return date.toLocaleDateString("en-US", options);
+    };
+
+    // Loop through each element and format its date
+    orderDateElements.forEach((element) => {
+      const orderDate = element.textContent.trim(); // Get the raw date string
+      element.textContent = formatOrderDate(orderDate); // Update with the formatted date
+    });
+  });

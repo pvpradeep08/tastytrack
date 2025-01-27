@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.app.entity.User" %>
+<%@ page import="com.app.entity.Order" %>
+<%@ page import="com.app.entity.OrderItem" %>
+<%@ page import="com.app.controller.OrderItemController" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="orders">
                             <ion-icon name="paper-plane"></ion-icon>
                             <span class="nav-text">Orders</span>
                         </a>
@@ -96,14 +101,14 @@
 
                             <div class="stats-container">
                                 <div class="stat">
-                                    <p class="text-xl font-semibold text-gray-900">43</p>
+                                    <p class="text-xl font-semibold text-gray-900"><%= session.getAttribute("ordersCount") != null ? session.getAttribute("ordersCount").toString() : " 0 " %></p>
                                     <p class="text-sm text-gray-500">Orders</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="quick-actions">
-                            <a class="action-button" href="pages/orders.html">
+                            <a class="action-button" href="orders">
                                 <span class="icon">📦</span>
                                 My Orders
                             </a>
@@ -111,7 +116,7 @@
                                 <span class="icon">🛒</span>
                                 Cart
                             </a>
-                            <a class="action-button danger">
+                            <a href="logout" class="action-button danger">
                                 <span class="icon">🚪</span>
                                 Sign Out
                             </a>
@@ -162,7 +167,39 @@
                             <h3 class="text-lg font-semibold text-gray-900 mb-4">
                                 Recent Orders
                             </h3>
-                            <div class="orders-list"></div>
+                            <div class="orders-list">
+                            <% List<Order> recentOrders = (List<Order>) session.getAttribute("recentOrders");
+                               %>
+                            <% if( recentOrders != null && recentOrders.size() > 0 ) {
+                                
+                           
+                            for (Order order : recentOrders) { 
+                                 List<OrderItem> orderItems = OrderItemController.getAllOrderItemsByOrderId(order.getOrderId()); %>
+                                <div class="order-item">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="bg-white p-2 rounded-md">
+                                        <span class="icon">📦</span>
+                                        </div>
+                                        <div>
+                                        <p class="font-medium text-gray-900">Order #<%= order.getOrderId() %></p>
+                                        <p class="text-sm text-gray-500"><%= orderItems.size() %> items • ₹ <%= order.getTotalAmountWithTax() %></p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="icon">🕒</span>
+                                        <span class="text-sm text-gray-500 recent-order-date"><%= order.getOrderDate() %></span>
+                                    </div>
+                                </div>
+                            <% } } else { %>
+
+                                <div class="order-item">
+                                    <div class="flex items-center space-x-4">
+                                        <p>No recent orders</p>
+                                    </div>
+                                </div>
+
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 </div>
