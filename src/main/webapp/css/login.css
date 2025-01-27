@@ -8,6 +8,12 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overflow: hidden;
+}
+
 body {
   background-color: #080710;
   font-family: "Poppins", sans-serif;
@@ -130,3 +136,74 @@ button:hover {
 .links a:hover {
   color: #23a2f6;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .background {
+    width: 350px;
+    height: 400px;
+  }
+
+  form {
+    width: 80%;
+    height: auto;
+    padding: 30px;
+  }
+
+  form h3 {
+    font-size: 28px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 12px 0;
+  }
+
+  .links a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .background {
+    width: 250px;
+    height: 300px;
+  }
+
+  form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  form h3 {
+    font-size: 24px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .links a {
+    font-size: 12px;
+  }
+}
+
+
+/* Responsive */

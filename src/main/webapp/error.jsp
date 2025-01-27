@@ -74,7 +74,7 @@
 			<h1>Oops! <%= request.getAttribute("message") %></h1>
 			<p>It seems you've taken a wrong turn.</p>
 			<p>Let’s get you back on track!</p>
-			<a href="login.html" class="btn">Go to LogIn> Page</a>
+			<a href="login.html" class="btn">Go to LogIn Page</a>
 		</div>
 	</body>
 </html>

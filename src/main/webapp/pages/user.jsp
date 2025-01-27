@@ -11,21 +11,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile - Food Delivery</title>
+    <link rel="shortcut icon" href="images/logo/fevicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="css/user.css" />
     <link rel="stylesheet" href="css/navbar.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    />
-    <script
-        type="module"
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-        nomodule
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <div class="min-h-screen bg-gray-50">
@@ -48,15 +40,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="orders">
-                            <ion-icon name="paper-plane"></ion-icon>
-                            <span class="nav-text">Orders</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="pages/cart.jsp">
                             <ion-icon name="cart" class="cart-icon"></ion-icon>
                             <span class="nav-text">Cart</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders">
+                            <ion-icon name="paper-plane"></ion-icon>
+                            <span class="nav-text">Orders</span>
                         </a>
                     </li>
                     <li>
@@ -75,6 +67,7 @@
         </nav>
 
         <% User user = (User) request.getAttribute("user"); %>
+
         <main class="max-w-7xl mx-auto px-4 py-8">
             <div class="grid">
                 <!-- Profile Card -->
@@ -101,7 +94,9 @@
 
                             <div class="stats-container">
                                 <div class="stat">
-                                    <p class="text-xl font-semibold text-gray-900"><%= session.getAttribute("ordersCount") != null ? session.getAttribute("ordersCount").toString() : " 0 " %></p>
+                                    <p class="text-xl font-semibold text-gray-900">
+                                        <%= session.getAttribute("ordersCount") != null ? session.getAttribute("ordersCount").toString() : " 0 " %>
+                                    </p>
                                     <p class="text-sm text-gray-500">Orders</p>
                                 </div>
                             </div>
@@ -168,37 +163,32 @@
                                 Recent Orders
                             </h3>
                             <div class="orders-list">
-                            <% List<Order> recentOrders = (List<Order>) session.getAttribute("recentOrders");
-                               %>
-                            <% if( recentOrders != null && recentOrders.size() > 0 ) {
-                                
-                           
-                            for (Order order : recentOrders) { 
-                                 List<OrderItem> orderItems = OrderItemController.getAllOrderItemsByOrderId(order.getOrderId()); %>
-                                <div class="order-item">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="bg-white p-2 rounded-md">
-                                        <span class="icon">📦</span>
+                                <% List<Order> recentOrders = (List<Order>) session.getAttribute("recentOrders"); %>
+                                <% if (recentOrders != null && recentOrders.size() > 0) { 
+                                    for (Order order : recentOrders) { 
+                                        List<OrderItem> orderItems = OrderItemController.getAllOrderItemsByOrderId(order.getOrderId()); %>
+                                        <div class="order-item">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="bg-white p-2 rounded-md">
+                                                    <span class="icon">📦</span>
+                                                </div>
+                                                <div>
+                                                    <p class="font-medium text-gray-900">Order #<%= order.getOrderId() %></p>
+                                                    <p class="text-sm text-gray-500"><%= orderItems.size() %> items • ₹ <%= order.getTotalAmountWithTax() %></p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="icon">🕒</span>
+                                                <span class="text-sm text-gray-500 recent-order-date"><%= order.getOrderDate() %></span>
+                                            </div>
                                         </div>
-                                        <div>
-                                        <p class="font-medium text-gray-900">Order #<%= order.getOrderId() %></p>
-                                        <p class="text-sm text-gray-500"><%= orderItems.size() %> items • ₹ <%= order.getTotalAmountWithTax() %></p>
+                                    <% } } else { %>
+                                        <div class="order-item">
+                                            <div class="flex items-center space-x-4">
+                                                <p>No recent orders</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="icon">🕒</span>
-                                        <span class="text-sm text-gray-500 recent-order-date"><%= order.getOrderDate() %></span>
-                                    </div>
-                                </div>
-                            <% } } else { %>
-
-                                <div class="order-item">
-                                    <div class="flex items-center space-x-4">
-                                        <p>No recent orders</p>
-                                    </div>
-                                </div>
-
-                                <% } %>
+                                    <% } %>
                             </div>
                         </div>
                     </div>

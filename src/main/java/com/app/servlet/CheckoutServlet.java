@@ -52,6 +52,8 @@ public class CheckoutServlet extends HttpServlet {
             }
             req.getSession().setAttribute("cart", new Cart());
             List<Order> orders = OrderDao.getAllOrdersById(userId);
+            List<Order> recentOrders = OrderController.getRecentOrdersByUserId(userId);
+            req.getSession().setAttribute("recentOrders", recentOrders);
             req.getSession().setAttribute("ordersCount", orders.size());
             req.getRequestDispatcher("home").forward(req, resp);
         } else {

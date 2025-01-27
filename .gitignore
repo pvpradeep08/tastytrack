@@ -34,5 +34,8 @@ build/
 ### VS Code ###
 .vscode/
 
+### Smart Tomcat ###
+.smarttomcat/
+
 ### Mac OS ###
 .DS_Store

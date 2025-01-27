@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History | Tasty Track</title>
+    <link rel="shortcut icon" href="images/logo/fevicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/navbar.css" />
     <link rel="stylesheet" href="css/orders.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -32,8 +33,8 @@
                 <ul class="nav-links">
                     <li><a href="home"><ion-icon name="home"></ion-icon><span class="nav-text">Home</span></a></li>
                     <li><a href="restaurants"><ion-icon name="restaurant"></ion-icon><span class="nav-text">Restaurants</span></a></li>
-                    <li><a href="orders"><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a></li>
                     <li><a href="pages/cart.jsp"><ion-icon name="cart" class="cart-icon"></ion-icon><span class="nav-text">Cart</span></a></li>
+                    <li><a href="orders"><ion-icon name="paper-plane"></ion-icon><span class="nav-text">Orders</span></a></li>
                     <li><a href="dashboard"><ion-icon name="person-circle" class="profile-icon"></ion-icon><span class="nav-text">
                         <%= (String) session.getAttribute("username") != null ? session.getAttribute("username").toString().split(" ")[0] : "Login" %>
                     </span></a></li>

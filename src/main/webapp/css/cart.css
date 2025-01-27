@@ -156,7 +156,7 @@ h1 ion-icon {
 
 .item-price {
     font-weight: bold;
-    /* min-width: 10px; */
+    min-width: 75px;
     text-align: right;
 }
 
@@ -231,7 +231,7 @@ h1 ion-icon {
 /* below 700px */
 
 @media screen and (max-width: 700px) {
-    .item-image-box{
+    .item-image-box {
         display: none;
     }
 }
