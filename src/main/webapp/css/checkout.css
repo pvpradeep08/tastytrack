@@ -388,7 +388,7 @@ body {
 
 .button-primary .place-order-icon {
     font-size: 1.5rem;
-} 
+}
 
 /* Icons */
 .icon {
@@ -396,4 +396,60 @@ body {
     display: inline-block;
     margin-right: 0.75rem;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Dark overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Glassmorphic modal */
+.modal {
+    position: relative;
+    width: 800px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.2);
+    /* Transparent white */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow */
+    backdrop-filter: blur(10px);
+    /* Glass effect */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Frosted border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.scooty {
+    position: absolute;
+    bottom: 10px;
+    left: -150px;
+    /* Start off-screen */
+    width: 120px;
+    height: auto;
+}
+
+@keyframes scootyMove {
+    0% {
+        left: -150px;
+    }
+
+    100% {
+        left: calc(100% + 150px);
+        /* Move off-screen */
+    }
 }

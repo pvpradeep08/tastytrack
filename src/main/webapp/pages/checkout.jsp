@@ -199,15 +199,21 @@
                         </div>
 
                         <!-- Place Order Button -->
-                        <a id="placeOrder" class="button-primary">
+                        <a id="placeOrder" class="button-primary place-order-btn" onclick="placeOrder()">
                             <span>Place Order</span> <ion-icon name="cube-outline" class="place-order-icon"></ion-icon>
                         </a>
+                       
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <!-- Inline SVG for scooty -->
+            <img width="94" height="94" id="scooty" class="scooty" src="https://img.icons8.com/3d-fluency/94/delivery-scooter.png" alt="delivery-scooter"/>
+        </div>
+    </div>
     <script src="../js/navbar.js"></script>
     <script src="../js/checkout.js"></script>
 </body>

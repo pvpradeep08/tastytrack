@@ -95,9 +95,54 @@
                                 <div class="order-id">ORDERID#<%= order.getOrderId() %></div>
                                 <div class="order-date"><%= order.getOrderDate() %></div>
                             </div>
-                            <div>
-                                <span class="payment-method payment-<%= order.getPaymentMethod() %>"> <%= order.getPaymentMethod() %></span>
-                                <span class="order-status status-<%= order.getStatus() %>"><%= order.getStatus() %></span>
+                            <div class="order-actions" >
+                            <%
+                                String status = order.getStatus();
+                                String imgSrc = "";
+                                String paymentMethod = order.getPaymentMethod();
+                                String statusImgSrc = "";
+                                switch (paymentMethod) {
+                                    case "cash":
+                                        statusImgSrc = "https://img.icons8.com/office/40/money--v1.png";
+                                        break;
+                                    case "card":
+                                        statusImgSrc = "https://img.icons8.com/ios/15/228BE6/bank-card-back-side--v1.png";
+                                        break;
+                                    case "upi":
+                                        statusImgSrc = "https://img.icons8.com/dotty/99/FA5252/iphone13.png";
+                                        break;
+                                    case "netbanking":
+                                        statusImgSrc = "https://img.icons8.com/wired/15/FA5252/bank-building.png";
+                                        break;
+                                    default:
+                                        statusImgSrc = ""; // Fallback if payment method is unrecognized
+                                }
+
+                                switch (status) {
+                                    case "processing":
+                                        imgSrc = "https://img.icons8.com/ios-filled/14/228BE6/process.png";
+                                        break;
+                                    case "cancelled":
+                                        imgSrc = "https://img.icons8.com/material-outlined/15/FA5252/cancel--v1.png";
+                                        break;
+                                    case "confirmed":
+                                        imgSrc = "https://img.icons8.com/material-outlined/15/40C057/checked--v1.png";
+                                        break;
+                                    case "delivered":
+                                        imgSrc = "https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/15/737373/external-delivered-food-delivery-tanah-basah-basic-outline-tanah-basah.png";
+                                        break;
+                                    default:
+                                        imgSrc = ""; // Fallback if status is unrecognized
+                                }
+                            %>
+                                <span class="payment-method payment-<%= order.getPaymentMethod() %>">
+                                    <img width="15" height="15" class="payment-icon" src="<%= statusImgSrc %>" alt="<%= paymentMethod %>"/> 
+                                    <div class="payment-text"><%= order.getPaymentMethod() %></div>
+                                </span>
+                                <span class="order-status status-<%= order.getStatus() %>">
+                                    <img width="15" height="15" class="status-icon" src="<%= imgSrc %>" alt="<%= status %> icon"/>
+                                    <div class="status-text"><%= status %></div>
+                                </span>
                             </div>
                         </div>
 

@@ -152,7 +152,7 @@
                                     <span class="icon">📍</span>
                                     <div>
                                         <p class="text-sm text-gray-500">Delivery Address</p>
-                                        <p class="text-gray-900"><%= user.getAddress() %></p>
+                                        <p class="text-gray-900 user-address "><%= user.getAddress() %></p>
                                     </div>
                                 </div>
                             </div>

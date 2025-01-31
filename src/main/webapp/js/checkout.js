@@ -78,7 +78,6 @@ paymentOptions.forEach((option) => {
 	});
 });
 
-/////////////////////////
 document.getElementById("placeOrder").addEventListener("click", function (e) {
 	e.preventDefault(); // Prevent the default anchor behavior
 
@@ -105,6 +104,31 @@ document.getElementById("placeOrder").addEventListener("click", function (e) {
 	// Create the URL with query parameters
 	const url = `../checkout?totalPrice=${totalPrice}&totalPriceWithTax=${totalPriceWithTax}&paymentMethod=${paymentMethod}&status=${status}`;
 
-	// Redirect to the new URL with the data
-	window.location.href = url;
+	// Animation and redirection
+	const overlay = document.getElementById("overlay");
+	const scooty = document.getElementById("scooty");
+
+	// Show the overlay and modal
+	overlay.style.display = "flex";
+
+	// Start scooty animation
+	scooty.style.animation = "scootyMove 2s linear forwards";
+
+	// Redirect after animation ends
+	setTimeout(() => {
+		overlay.style.display = "none"; // Hide overlay
+		window.location.href = url; // Redirect with the constructed URL
+	}, 2000); // Match animation duration
 });
+
+const address = document.querySelector("#deliveryAddress");
+
+if (address) {
+	const addressText = address.textContent;
+	const addressLines = addressText.split("\n");
+	const formattedAddress = addressLines
+		.map((line) => line.trim())
+		.filter((line) => line !== "")
+		.join(", ");
+	address.textContent = formattedAddress;
+}

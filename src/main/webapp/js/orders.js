@@ -123,3 +123,4 @@ document.getElementById("sortOrder").addEventListener("change", filterOrders);
 
 // Initial filter call on page load
 filterOrders();
+

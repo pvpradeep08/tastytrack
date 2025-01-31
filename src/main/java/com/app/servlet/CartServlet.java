@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
     @Override
+    @SuppressWarnings("ConvertToStringSwitch")
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if (req.getSession().getAttribute("username") != null) {
@@ -43,7 +44,8 @@ public class CartServlet extends HttpServlet {
             } else if (action.equals("nothing")) {
                 // return;
             }
-            resp.sendRedirect("pages/cart.jsp");
+            String url = action.equals("add") ? "menu?restaurantId=" + newRestaurantId + "" : "pages/cart.jsp";
+            resp.sendRedirect(url);
         } else {
             resp.sendRedirect("login.html");
         }

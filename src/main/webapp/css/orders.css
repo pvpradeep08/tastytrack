@@ -152,6 +152,11 @@ body {
     font-size: 0.875rem;
 }
 
+.order-actions{
+    display: flex;
+    gap: 0.5rem;
+}
+
 .order-status,
 .payment-method {
     padding: 0.25rem 0.75rem;
@@ -159,6 +164,10 @@ body {
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
 }
 
 .status-delivered {
@@ -167,8 +176,10 @@ body {
 }
 
 .status-confirmed {
-    background-color: #dcfce7; /* Light green */
-    color: #14532d; /* Dark green */
+    background-color: #dcfce7;
+    /* Light green */
+    color: #14532d;
+    /* Dark green */
 }
 
 
@@ -183,24 +194,32 @@ body {
 }
 
 .payment-cash {
-    background-color: #e3fcef; /* Light green */
-    color: #0f5132; /* Dark green */
+    background-color: #e3fcef;
+    /* Light green */
+    color: #0f5132;
+    /* Dark green */
 }
 
 .payment-card {
-    background-color: #e3e8ff; /* Light blue */
-    color: #1e3a8a; /* Dark blue */
+    background-color: #e3e8ff;
+    /* Light blue */
+    color: #1e3a8a;
+    /* Dark blue */
 }
 
 .payment-upi {
     text-transform: uppercase;
-    background-color: #fce7f3; /* Light pink */
-    color: #831843; /* Dark pink */
+    background-color: #fce7f3;
+    /* Light pink */
+    color: #831843;
+    /* Dark pink */
 }
 
 .payment-netbanking {
-    background-color: #fff7e6; /* Light yellow */
-    color: #854d0e; /* Dark yellow */
+    background-color: #fff7e6;
+    /* Light yellow */
+    color: #854d0e;
+    /* Dark yellow */
 }
 
 
@@ -261,7 +280,7 @@ body {
     color: teal;
 }
 
-.total-amount-with-tax{
+.total-amount-with-tax {
     color: #ff6b6b;
 }
 

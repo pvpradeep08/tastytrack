@@ -79,19 +79,25 @@ document.getElementById(
 
 // Populate recent orders
 document.addEventListener("DOMContentLoaded", () => {
-    // Select all elements with the 'recent-order-date' class
-    const orderDateElements = document.querySelectorAll(".recent-order-date");
+	// Select all elements with the 'recent-order-date' class
+	const orderDateElements = document.querySelectorAll(".recent-order-date");
 
-    // Function to format the date
-    const formatOrderDate = (dateString) => {
-      const date = new Date(dateString);
-      const options = { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" };
-      return date.toLocaleDateString("en-US", options);
-    };
+	// Function to format the date
+	const formatOrderDate = (dateString) => {
+		const date = new Date(dateString);
+		const options = {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
+		};
+		return date.toLocaleDateString("en-US", options);
+	};
 
-    // Loop through each element and format its date
-    orderDateElements.forEach((element) => {
-      const orderDate = element.textContent.trim(); // Get the raw date string
-      element.textContent = formatOrderDate(orderDate); // Update with the formatted date
-    });
-  });
+	// Loop through each element and format its date
+	orderDateElements.forEach((element) => {
+		const orderDate = element.textContent.trim(); // Get the raw date string
+		element.textContent = formatOrderDate(orderDate); // Update with the formatted date
+	});
+});
