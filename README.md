@@ -33,7 +33,6 @@ The application is built using Java, JSP, Servlets, Hibernate, and MySQL for bac
 - **Clone** the repository to your local machine. 
 - Set up a **MySQL** database (only create the database named `foodapp`) and configure it in `src/main/resources/hibernate.cfg.xml`.
 - Run the project using your preferred **IDE** (e.g., **IntelliJ IDEA**) on **apache tomcat** server.
-- Access the application using the provided URL: `http://localhost:8080/tastytrack/` 
 
 ## Screenshots
 
